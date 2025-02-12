@@ -4,7 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float gravity = -9.81f; // Сила гравитации
-    public float jumpHeight = 2f; // Высота прыжка
+    
 
     private CharacterController characterController;
     private Vector3 velocity; // Скорость падения
@@ -27,12 +27,6 @@ public class PlayerController : MonoBehaviour
         if (characterController.isGrounded && velocity.y < 0)
         {
             velocity.y = -2f; // Небольшая сила прижатия к земле
-        }
-
-        // Прыжок
-        if (Input.GetButtonDown("Jump") && characterController.isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
         // Применяем гравитацию
