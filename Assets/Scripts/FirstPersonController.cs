@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class FirstPersonController : MonoBehaviour
 {
-    public float moveSpeed = 10f; // Скорость движения
-    public float lookSpeed = 100f; // Скорость поворота камеры
+    public float moveSpeed = 10f;
+    public float lookSpeed = 100f;
 
-    private Vector2 moveInput; // Ввод для движения
-    private Vector2 lookInput; // Ввод для поворота камеры
+    private Vector2 moveInput; 
+    private Vector2 lookInput; 
 
-    public Transform cameraTransform; // Ссылка на камеру
+    public Transform cameraTransform;
 
     private void Awake()
     {
-        // Проверяем, есть ли камера с тегом MainCamera
         if (cameraTransform == null && Camera.main != null)
         {
             cameraTransform = Camera.main.transform;
@@ -21,9 +20,6 @@ public class FirstPersonController : MonoBehaviour
         {
             Debug.LogError("Camera not assigned and MainCamera not found in the scene!");
         }
-
-        // Блокируем курсор мыши в центре экрана
-        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -43,10 +39,10 @@ public class FirstPersonController : MonoBehaviour
         float lookX = lookInput.x * lookSpeed * Time.deltaTime;
         float lookY = lookInput.y * lookSpeed * Time.deltaTime;
 
-        // Поворачиваем персонажа по горизонтали
+        
         transform.Rotate(Vector3.up * lookX);
 
-        // Поворачиваем камеру по вертикали
+        
         cameraTransform.Rotate(Vector3.right * -lookY);
     }
 
